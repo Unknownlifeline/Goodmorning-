@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Good Morning 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:linear-gradient(135deg,#fff7f7,#ffe6f9,#e0f7ff);
+  position:relative;
+}
+
+/* Floating hearts */
+@keyframes floatHearts {
+  0%{transform:translateY(0) scale(1);opacity:1;}
+  100%{transform:translateY(-120vh) scale(1.4);opacity:0;}
+}
+.heart{
+  position:absolute;
+  bottom:-10vh;
+  font-size:22px;
+  color:#ff91a4;
+  animation:floatHearts 8s linear infinite;
+  opacity:0.7;
+}
+.heart:nth-child(1){left:10%;animation-delay:0s;}
+.heart:nth-child(2){left:30%;animation-delay:2s;}
+.heart:nth-child(3){left:50%;animation-delay:4s;}
+.heart:nth-child(4){left:70%;animation-delay:1s;}
+.heart:nth-child(5){left:85%;animation-delay:3s;}
+
+/* Card container */
+.card{
+  width:90%;
+  max-width:420px;
+  background:#ffffffb3;
+  backdrop-filter:blur(8px);
+  border-radius:24px;
+  box-shadow:0 10px 40px rgba(255,120,160,0.25);
+  padding:26px 24px 36px;
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+h1{font-weight:700;font-size:28px;margin-bottom:6px;color:#ff6f91;}
+p{color:#666;font-size:15px;margin-bottom:22px;}
+
+/* Flip Message Box */
+.message-box{
+  width:100%;
+  height:170px;
+  perspective:1000px;
+  cursor:pointer;
+  margin:auto;
+}
+.inner-box{
+  width:100%;height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 0.8s cubic-bezier(.6,.2,.4,1);
+}
+.message-box.flipped .inner-box{transform:rotateY(180deg);}
+.front,.back{
+  position:absolute;width:100%;height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;line-height:1.5;
+  box-shadow:0 4px 15px rgba(0,0,0,0.05);
+  padding:18px;
+}
+.front{
+  background:linear-gradient(180deg,#fff0f5,#fffaf0);
+  border:2px solid #ffb6c1;
+}
+.back{
+  background:linear-gradient(180deg,#ffe3f3,#fff0fa);
+  border:2px solid #ffcce0;
+  transform:rotateY(180deg);
+}
+.front:hover,.back:hover{
+  box-shadow:0 6px 25px rgba(255,120,160,0.25);
+}
+.note{
+  font-size:13px;
+  color:#999;
+  margin-top:14px;
+}
+
+/* Responsive tweak */
+@media(max-width:420px){
+  h1{font-size:24px;}
+  p{font-size:14px;}
+  .front,.back{font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+  <!-- floating hearts -->
+  <div class="heart">💖</div>
+  <div class="heart">💞</div>
+  <div class="heart">💗</div>
+  <div class="heart">💓</div>
+  <div class="heart">💘</div>
+
+  <!-- Main Card -->
+  <div class="card">
+    <h1>GoodMorning Jaan🌸</h1>
+    <p>Click the message box to reveal a little surprise 💫</p>
+
+    <div class="message-box" id="msgBox">
+      <div class="inner-box">
+        <div class="front">
+          <div><strong>To Madam ji 🤭🍫
+        </strong><br>
+          Subha Subha chai chahiye ya flying ki de rahe aap hi 😁</div>
+        </div>
+        <div class="back">
+          <div><strong>Hottie 😘</strong><br>
+          bolo bolo subha subha gundagardi karnj hai kya hum pe 😶‍🌫️</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">Tap or click to flip ✨ Works perfectly on all screens 💕</div>
+  </div>
+
+  <!-- 👇 Add your voice file here -->
+  <audio id="gmAudio" src="Audio from Shashikant (1).mp3" preload="auto"></audio>
+
+<script>
+const msgBox = document.getElementById('msgBox');
+const audio = document.getElementById('gmAudio');
+
+msgBox.addEventListener('click', () => {
+  msgBox.classList.toggle('flipped');
+  audio.currentTime = 0;  // har baar naya se start ho
+  audio.play();
+});
+</script>
+
+</body>
+</html>
